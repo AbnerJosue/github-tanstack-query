@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { IGithubIssues, State } from '../interfaces';
 import { useQueryClient } from '@tanstack/react-query';
 import { getIssue, getIssueComments } from '../actions';
+import { timeSince } from '../../helpers';
 
 interface IProps {
   issue: IGithubIssues;
@@ -121,10 +122,26 @@ export const IssueItem = ({ issue }: IProps) => {
 
         {/* Nota: el "opened 2 days ago" está hardcodeado; puedes reemplazarlo con una función que calcule el tiempo real */}
         <span className="text-gray-500">
-          #{issue.number} opened 2 days ago by{' '}
+          #{issue.number} opened { timeSince(issue.created_at) }
           <span className="font-bold">{issue.user.login}</span>
         </span>
+        <div className='flex flex-wrap'>
+          {
+            issue.labels.map((label) => (
+              <span
+                key={label.id}
+                className='px-2 py-2 mr-2 text-xs text-white rounded-md'
+                style={{
+                  border: `1px solid #${label.color}`
+                }}
+              >
+                {label.name}
+              </span>
+            ))
+          }
+        </div>
       </div>
+
 
       {/* Avatar del autor */}
       <img
