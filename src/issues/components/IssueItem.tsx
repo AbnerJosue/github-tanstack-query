@@ -105,7 +105,7 @@ export const IssueItem = ({ issue }: IProps) => {
       className="animate-fadeIn flex items-center px-2 py-3 mb-5 border rounded-md bg-slate-900 hover:bg-slate-800"
     >
       {/* Icono según estado del issue */}
-      {issue.state === State.close
+      {issue.state === State.Close
         ? <FiInfo size={30} color="red" className="min-w-10" />
         : <FiCheckCircle size={30} color="green" />
       }

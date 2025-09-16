@@ -36,8 +36,9 @@ export interface IGithubIssues {
 }
 
 export enum State { 
-  close = "close",
-  open = "open"
+  All = "all",
+  Close = "closed",
+  Open = "open"
 }
 
 interface Issuedependenciessummary {
